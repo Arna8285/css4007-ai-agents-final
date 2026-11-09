@@ -18,11 +18,10 @@ During Week 10, I started planning my final AI Agents project.
 
 ## Important Commits
 
-The project proposal and Week 10 progress report are prepared.
+- Commit hash: 0afff3b
+- Description: Complete Week 10 finance agent proposal.
+- Link: https://github.com/Arna8285/css4007-ai-agents-final/commit/0afff3b
 
-- Commit hash: To be added after the first commit.
-- Description: Add AI Personal Finance Agent proposal and Week 10 report.
-- Link: To be added after pushing to GitHub.
 
 ## Current Functionality
 
