@@ -107,31 +107,44 @@ The OpenAI API will help the agent understand requests, select tools, and explai
 
 LangGraph will manage the agent workflow and state.
 
+
 ## Architecture
 
-User Request  
-↓  
-Input Validation  
-↓  
-LLM Agent (LangGraph)  
-↓  
-Task Planning  
-↓  
-Tool Selection and Execution  
-↓  
-Financial Analysis and Calculations  
-↓  
-Result Validation  
-↓  
-Check Goal and Budget  
-↓  
-If needed: Update Plan  
-↓  
-User Approval for Saving  
-↓  
-Final Financial Report
+```mermaid
+flowchart TD
+    A([User Request]) --> B[Input Validation]
+    B --> C[LLM Agent - LangGraph]
+    C --> D[Task Planning]
+    D --> E[Tool Selection and Execution]
+    E --> F[Financial Analysis and Calculations]
+    F --> G[Result Validation]
+    G --> H{Goal and Budget OK?}
+
+    H -->|No| I[Update Financial Plan]
+    I --> D
+
+    H -->|Yes| J{Save Plan?}
+    J -->|Approved| K[Save Plan]
+    J -->|Not Approved| L[Final Financial Report]
+    K --> L
+
+    L --> M([End])
+
+    classDef start fill:#DBEAFE,stroke:#2563EB,color:#1E3A8A
+    classDef agent fill:#EDE9FE,stroke:#7C3AED,color:#4C1D95
+    classDef process fill:#F1F5F9,stroke:#64748B,color:#0F172A
+    classDef decision fill:#FEF3C7,stroke:#D97706,color:#78350F
+    classDef finish fill:#DCFCE7,stroke:#16A34A,color:#14532D
+
+    class A,B start
+    class C,D agent
+    class E,F,G,I,K process
+    class H,J decision
+    class L,M finish
+```
 
 The agent will have a maximum number of execution steps to prevent infinite loops.
+
 
 ## Example Requests
 
