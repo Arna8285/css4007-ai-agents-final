@@ -20,9 +20,10 @@ I completed the following tasks:
 
 ## Important Commits
 
-- Commit hash: To be added after committing the Week 11 work.
-- Description: Implement initial LLM integration for the finance agent.
-- Link: To be added after pushing to GitHub.
+- Commit hash: b59096e
+- Description: Complete Week 11 initial LLM integration.
+- Link: https://github.com/Arna8285/css4007-ai-agents-final/commit/b59096e
+
 
 ## Current Functionality
 
