@@ -16,11 +16,12 @@ I completed the following tasks:
 - Tested three financial scenarios.
 - Visualized the graph using Mermaid.
 
+
 ## Important Commits
 
-- Commit hash: To be added after pushing Week 12 to GitHub.
-- Description: Implement Week 12 LangGraph workflow with conditional routing.
-- Link: To be added after committing.
+- Commit hash: 34e58bc
+- Description: Implement Week 12 LangGraph workflow.
+- Link: https://github.com/Arna8285/css4007-ai-agents-final/commit/34e58bc
 
 ## Current Functionality
 
