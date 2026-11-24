@@ -1,29 +1,90 @@
-# Semester Week 13 Progress Report
+**# Semester Week 13 Progress Report**
 
-## Completed Work
 
-TODO
 
-## Important Commits
+**## Completed Work**
 
-TODO
 
-## Current Functionality
 
-TODO
+\- Implemented an AI Personal Finance Agent.
 
-## Problems Encountered
+\- Created three financial calculation tools.
 
-TODO
+\- Connected the tools to the GPT-4o-mini model.
 
-## Solutions
+\- Implemented automatic tool selection and execution.
 
-TODO
+\- Added a maximum execution step limit.
 
-## What I Learned
 
-TODO
 
-## Next Week
+**## Important Commits**
 
-TODO
+
+
+\- Implemented financial calculation tools and agent execution.
+
+
+
+**## Current Functionality**
+
+
+
+The agent can:
+
+\- Calculate monthly savings.
+
+\- Project savings over several months.
+
+\- Check whether a savings goal is achievable.
+
+\- Explain financial results in simple language.
+
+
+
+**## Problems Encountered**
+
+
+
+\- The agent needed a mechanism to execute tools automatically.
+
+\- Financial inputs needed validation.
+
+
+
+**## Solutions**
+
+
+
+\- Implemented a tool execution loop.
+
+\- Added input validation.
+
+\- Added a maximum of 5 execution steps.
+
+\- Restricted the agent to three registered financial tools.
+
+
+
+**## What I Learned**
+
+
+
+\- How LLM models use tools.
+
+\- How to connect tools to an AI agent.
+
+\- How to execute tool calls and return results.
+
+\- How to validate financial calculations.
+
+
+
+**## Next Week**
+
+
+
+\- Continue developing the AI Personal Finance Agent.
+
+\- Improve the agent workflow and test additional scenarios.
+
