@@ -1,5 +1,5 @@
+
 from langchain_core.messages import SystemMessage, HumanMessage, ToolMessage
-import os
 from pathlib import Path
 from dotenv import load_dotenv
 
@@ -53,6 +53,9 @@ tools = [
 ]
 
 llm_with_tools = llm.bind_tools(tools)
+
+
+# Запускаем финансового агента
 def run_finance_agent(user_request: str, max_steps: int = 5) -> str:
     messages = [
         SystemMessage(
@@ -60,13 +63,22 @@ def run_finance_agent(user_request: str, max_steps: int = 5) -> str:
                 "You are a personal finance assistant. "
                 "Use the available tools for financial calculations. "
                 "Explain the results in simple language. "
-                "Do not invent financial numbers."
+                "Do not invent financial numbers. "
+                "Only use the three registered finance calculation tools. "
+                "Never transfer money, access bank accounts, or make payments. "
+                "Never perform actions that change the user's financial data."
             )
         ),
         HumanMessage(content=user_request)
     ]
 
     tools_by_name = {tool.name: tool for tool in tools}
+
+    allowed_tools = {
+        "monthly_savings_tool",
+        "project_savings_tool",
+        "savings_goal_tool"
+    }
 
     for step in range(max_steps):
         response = llm_with_tools.invoke(messages)
@@ -77,6 +89,16 @@ def run_finance_agent(user_request: str, max_steps: int = 5) -> str:
 
         for tool_call in response.tool_calls:
             tool_name = tool_call["name"]
+
+            if tool_name not in allowed_tools:
+                messages.append(
+                    ToolMessage(
+                        content="Permission denied: this tool is not allowed.",
+                        tool_call_id=tool_call["id"]
+                    )
+                )
+                continue
+
             tool_args = tool_call["args"]
 
             selected_tool = tools_by_name[tool_name]
@@ -92,45 +114,5 @@ def run_finance_agent(user_request: str, max_steps: int = 5) -> str:
     return "Agent stopped: maximum execution steps reached."
 
 
-from langchain_core.messages import HumanMessage, ToolMessage
-
-
-def run_finance_agent(user_request: str):
-    messages = [HumanMessage(content=user_request)]
-
-    # Получаем ответ от LLM
-    response = llm_with_tools.invoke(messages)
-    messages.append(response)
-
-    # Выполняем выбранные инструменты
-
-    steps = 0
-    max_steps = 5
-
-    while response.tool_calls and steps < max_steps:
-        steps += 1
-
-        for tool_call in response.tool_calls:
-            selected_tool = next(
-                tool for tool in tools
-                if tool.name == tool_call["name"]
-            )
-
-            result = selected_tool.invoke(tool_call["args"])
-
-            messages.append(
-                ToolMessage(
-                    content=str(result),
-                    tool_call_id=tool_call["id"]
-                )
-            )
-
-        response = llm_with_tools.invoke(messages)
-        messages.append(response)
-
-    if steps >= max_steps and response.tool_calls:
-        return "Execution stopped: maximum number of steps reached."
-
-    return response.content
 
 
