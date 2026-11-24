@@ -10,7 +10,9 @@
 
 ## Important Commits
 
-- Implemented financial calculation tools and agent execution.
+- Commit hash: 705fde2
+- Description: Complete Week 13 progress report.
+- Link: https://github.com/Arna8285/css4007-ai-agents-final/commit/705fde2
 
 ## Current Functionality
 
